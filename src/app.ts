@@ -148,6 +148,30 @@ function Autobind(
   };
   return newDescriptor;
 }
+class ProjectItem extends BaseClass<HTMLUListElement, HTMLLIElement> {
+  private project: Project;
+  get persons() {
+    if (this.project.numberOfProple === 1) {
+      return "1 person";
+    } else {
+      return `${this.project.numberOfProple} persons`;
+    }
+  }
+  constructor(hostId: string, project: Project) {
+    super("single-project", hostId, false, project.id);
+    this.project = project;
+
+    this.configure();
+    this.renderContent();
+  }
+  renderContent() {
+    this.element!.querySelector("h2")!.textContent = this.project.title;
+    this.element!.querySelector("h3")!.textContent =
+      this.persons + " assigned.";
+    this.element!.querySelector("p")!.textContent = this.project.description;
+  }
+  configure() {}
+}
 class ProjLis extends BaseClass<HTMLDivElement, HTMLElement> {
   assignedProject: Project[] = [];
   constructor(private type: "active" | "finished") {
@@ -165,9 +189,7 @@ class ProjLis extends BaseClass<HTMLDivElement, HTMLElement> {
     ) as HTMLUListElement;
     listElement.innerHTML = "";
     for (const prjItem of this.assignedProject) {
-      const listItem = document.createElement("li");
-      listItem.textContent = prjItem.title;
-      listElement?.appendChild(listItem);
+      new ProjectItem(this.element!.querySelector("ul")!.id, prjItem);
     }
   }
   configure() {

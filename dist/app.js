@@ -100,6 +100,29 @@ function Autobind(_1, _2, descriptor) {
     };
     return newDescriptor;
 }
+class ProjectItem extends BaseClass {
+    get persons() {
+        if (this.project.numberOfProple === 1) {
+            return "1 person";
+        }
+        else {
+            return `${this.project.numberOfProple} persons`;
+        }
+    }
+    constructor(hostId, project) {
+        super("single-project", hostId, false, project.id);
+        this.project = project;
+        this.configure();
+        this.renderContent();
+    }
+    renderContent() {
+        this.element.querySelector("h2").textContent = this.project.title;
+        this.element.querySelector("h3").textContent =
+            this.persons + " assigned.";
+        this.element.querySelector("p").textContent = this.project.description;
+    }
+    configure() { }
+}
 class ProjLis extends BaseClass {
     constructor(type) {
         super("project-list", "app", false, `${type}-projects`);
@@ -114,9 +137,7 @@ class ProjLis extends BaseClass {
         const listElement = document.getElementById(`${this.type}-project-list`);
         listElement.innerHTML = "";
         for (const prjItem of this.assignedProject) {
-            const listItem = document.createElement("li");
-            listItem.textContent = prjItem.title;
-            listElement === null || listElement === void 0 ? void 0 : listElement.appendChild(listItem);
+            new ProjectItem(this.element.querySelector("ul").id, prjItem);
         }
     }
     configure() {
