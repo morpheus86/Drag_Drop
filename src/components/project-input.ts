@@ -1,8 +1,8 @@
-import { BaseClass } from "./base-component.js";
-import { validate } from "../utils/validation.js";
-import { Validatable } from "../utils/validation.js";
-import { projectState } from "../states/project-state.js";
-import { Autobind } from "../decorators/autobind-decorator.js";
+import { BaseClass } from "./base-component";
+import { validate } from "../utils/validation";
+import { Validatable } from "../utils/validation";
+import { projectState } from "../states/project-state";
+import { Autobind } from "../decorators/autobind-decorator";
 export class ProjectInput extends BaseClass<HTMLDivElement, HTMLFormElement> {
   titleEl: HTMLInputElement;
   descriptionEl: HTMLInputElement;

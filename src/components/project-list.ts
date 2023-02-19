@@ -1,10 +1,10 @@
-import { BaseClass } from "./base-component.js";
-import { projectState } from "../states/project-state.js";
-import { Autobind } from "../decorators/autobind-decorator.js";
-import { ProjectItem } from "./project-items.js";
-import { Project } from "../models/project-model.js";
-import { DragTarget } from "../models/drag-drop-interfaces.js";
-import { ProjectStatus } from "../models/project-model.js";
+import { BaseClass } from "./base-component";
+import { projectState } from "../states/project-state";
+import { Autobind } from "../decorators/autobind-decorator";
+import { ProjectItem } from "./project-items";
+import { Project } from "../models/project-model";
+import { DragTarget } from "../models/drag-drop-interfaces";
+import { ProjectStatus } from "../models/project-model";
 
 export class ProjLis
   extends BaseClass<HTMLDivElement, HTMLElement>
